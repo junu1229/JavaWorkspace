@@ -7,7 +7,7 @@ public interface UserControllerImpl {
 	public void loginProfile();
 
 	// 회원가입
-	public boolean signupProfile();
+	public boolean signupProfile(User user);
 
 	// 프로필 보기
 	public User viewProfile();
