@@ -2,7 +2,6 @@ package com.kh.practice3.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 import com.kh.practice3.model.Farm;
 
@@ -12,14 +11,18 @@ public class FarmController {
 	private ArrayList<Farm> list = new ArrayList<>(); // 고객이 구매한 농산물 저장용
 
 	public boolean addNewKind(Farm f, int amount) {
-		Set<Farm> farms = hMap.keySet();
-		for (Farm fa : farms) {
-			if (fa.equals(f)) {
-				System.out.println("중복");
-				return false;
-			}
+//		Set<Farm> farms = hMap.keySet();
+//		for (Farm fa : farms) {
+//			if (fa.equals(f)) {
+//				System.out.println("중복");
+//				return false;
+//			}
+//		}
+//		hMap.put(f, amount);
+		if (!hMap.containsKey(f)) {
+			hMap.put(f, amount);
+			return true;
 		}
-		hMap.put(f, amount);
 
 		// 전달 받은 f가 hMap 안에 key로 존재하지 않을 때
 		// f와 amount를 각각 키와 값으로 저장 후 true 반환
@@ -31,14 +34,20 @@ public class FarmController {
 	}
 
 	public boolean removeKind(Farm f) {
-		Set<Farm> farms = hMap.keySet();
-		for (Farm fa : farms) {
-			if (hMap.containsKey(f)) {
-				hMap.remove(fa);
+//		Set<Farm> farms = hMap.keySet();
+//		for (Farm fa : farms) {
+//			if (hMap.containsKey(f)) {
+//				hMap.remove(fa);
+//
+//				return true;
+//			}
+//		}
 
-				return true;
-			}
+		if (hMap.containsKey(f)) {
+			hMap.remove(f);
+			return true;
 		}
+
 		// 전달 받은 f가 hMap 안에 key로 존재할 때
 		// hMap에 f 삭제 후 true 반환
 
@@ -49,13 +58,10 @@ public class FarmController {
 
 	public boolean changeAmount(Farm f, int amount) {
 
-		Set<Farm> farms = hMap.keySet();
-		for (Farm fa : farms) {
-			if (hMap.containsKey(f)) {
-				hMap.replace(fa, amount);
+		if (hMap.containsKey(f)) {
+			hMap.put(f, amount);
 
-				return true;
-			}
+			return true;
 		}
 
 		// 전달 받은 f가 hMap 안에 key로 존재할 때
@@ -73,14 +79,11 @@ public class FarmController {
 	// 고객 관련 기능 ------------------------------------------------------------
 
 	public boolean buyFarm(Farm f) {
-		Set<Farm> farms = hMap.keySet();
-		for (Farm fa : farms) {
-			if (hMap.containsKey(f)&&hMap.get(fa)>0) {
-				list.add(fa);
-				hMap.replace(fa, hMap.get(fa)-1);
-				
-				return true;
-			}
+		if (hMap.containsKey(f) && hMap.get(f) > 0) {
+			list.add(f);
+			hMap.put(f, hMap.get(f) - 1);
+
+			return true;
 		}
 
 		// 전달 받은 f가 hMap 안에 존재하면서 그 f의 수량이 1개 이상 일 때
@@ -92,14 +95,11 @@ public class FarmController {
 	}
 
 	public boolean removeFarm(Farm f) {
-		Set<Farm> farms = hMap.keySet();
-		for (Farm fa : farms) {
-			if (hMap.containsKey(f)) {
-				list.remove(fa);
-				hMap.replace(fa, hMap.get(fa)+1);
+		if (list.contains(f)) {
+			list.remove(f);
+			hMap.put(f, hMap.get(f) + 1);
 
-				return true;
-			}
+			return true;
 		}
 
 		// 전달 받은 f가 list에 존재할 때
@@ -113,6 +113,5 @@ public class FarmController {
 	public ArrayList<Farm> printBuyFarm() {
 		return list;
 	}
-
 
 }

@@ -1,39 +1,34 @@
 package com.youtube.controller;
 
+import com.youtube.impl.UserControllerImpl;
 import com.youtube.model.User;
 
 public class UserController implements UserControllerImpl{
 	User user = null;
 
 	@Override
-	public void loginProfile() {
-		
+	public void loginProfile(String id, String password) {
 	}
 
 	@Override
 	public boolean signupProfile(User user) {
-		this.user = user;
+		return false;
 	}
 
 	@Override
 	public User viewProfile() {
-		if (loginProfile(user.getId())), loginProfile(user.getPassword()) {
-			
-		}
 		return null;
 	}
 
 	@Override
-	public User updateProfile(User user) {
-		if (loginProfile(this.user.getId()), this.user.getPassword()) {
-			
-		}
-			return null;
+	public User updateProfile() {
+		return null;
 	}
 
 	@Override
-	public void deleteProfile(String id) {
-		if(user.getId().equals(id))
+	public boolean deleteProfile() {
+		return false;
 	}
+
 	
 }
