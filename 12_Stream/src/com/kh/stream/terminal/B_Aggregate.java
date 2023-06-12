@@ -18,6 +18,9 @@ package com.kh.stream.terminal;
 import java.util.Arrays;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
+import java.util.stream.IntStream;
+
+import javax.management.ValueExp;
 
 public class B_Aggregate {
 
@@ -53,6 +56,14 @@ public class B_Aggregate {
 		
 		OptionalInt first=Arrays.stream(array).findFirst();
 		System.out.println("첫번째 값 : "+first.getAsInt());
+		
+		// 커스텀 집계
+		// array : 1, 2, 3, 4, 5, 6 -> 2*4*6
+		//Arrays.stream(array).filter(value->value%2==0).reduce((x, y) -> x*y).ifPresent(value-> System.out.println(value));
+		IntStream stream = Arrays.stream(array);
+		IntStream filter = stream.filter(value -> value%2==0);
+		OptionalInt reduce = filter.reduce((x,y)->x*y);
+		System.out.println(reduce.getAsInt());
 
 	}
 
