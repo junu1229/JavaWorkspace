@@ -146,26 +146,45 @@ public class A_Date {
 	// 자신이 태어난 날을 yyyy/mm/dd 형태로 입력 받아 해당 날짜가 무슨 요일이었는지, 지금까지 며칠이 지났는지 계산
 	// 입력된 형식이 잘못된 경우 다시 입력받기
 	public void practice() {
-		try {
-
-			Calendar date = Calendar.getInstance();
-			Calendar cal = Calendar.getInstance();
-			System.out.println("yyyy/mm/dd를 입력해주세요");
-			String birthday = sc.nextLine();
-			String[]barray=birthday.split("/");
-			
-			
-			date.set(Integer.parseInt(barray[0]), Integer.parseInt(barray[1])-1, Integer.parseInt(barray[2]));
-			SimpleDateFormat sdf = new SimpleDateFormat("E");
-			String format = sdf.format(date.getTime());
-			System.out.println(format);
-			System.out.println((cal.getTimeInMillis() - date.getTimeInMillis()) / 86400000);
-
-		} catch (Exception e) {
-			System.out.println("다시 입력해주세요");
-			practice();
-
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		Date result = null;
+		while(true) {
+			System.out.println("날짜를 yyyy/MM/dd 형태로 작성 : ");
+			String data = sc.nextLine();
+			try {
+				result = sdf.parse(data);
+				break;
+			} catch (Exception e) {
+			}
 		}
+		Calendar inputDate =Calendar.getInstance();
+		Calendar today = Calendar.getInstance();
+		inputDate.setTime(result);
+		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/MM/dd는 E요일 입니다.");
+		System.out.println(sdf2.format(result));
+		Long day = (today.getTimeInMillis()-inputDate.getTimeInMillis())/(1000*24*60*60);
+		System.out.println("태어난 날부터 지금까지 "+day+ "일 지났습니다.");
+		
+//		try {
+//
+//			Calendar date = Calendar.getInstance();
+//			Calendar cal = Calendar.getInstance();
+//			System.out.println("yyyy/mm/dd를 입력해주세요");
+//			String birthday = sc.nextLine();
+//			String[]barray=birthday.split("/");
+//			
+//			
+//			date.set(Integer.parseInt(barray[0]), Integer.parseInt(barray[1])-1, Integer.parseInt(barray[2]));
+//			SimpleDateFormat sdf = new SimpleDateFormat("E");
+//			String format = sdf.format(date.getTime());
+//			System.out.println(format);
+//			System.out.println((cal.getTimeInMillis() - date.getTimeInMillis()) / 86400000);
+//
+//		} catch (Exception e) {
+//			System.out.println("다시 입력해주세요");
+//			practice();
+//
+//		}
 
 	}
 
