@@ -1,16 +1,17 @@
 package com.youtube.controller;
 
+import com.youtube.impl.UserControllerImpl;
 import com.youtube.model.User;
 
 public class UserController implements UserControllerImpl{
+	User user = null;
 
 	@Override
-	public void loginProfile() {
-		
+	public void loginProfile(String id, String password) {
 	}
 
 	@Override
-	public boolean signupProfile() {
+	public boolean signupProfile(User user) {
 		return false;
 	}
 
@@ -28,5 +29,6 @@ public class UserController implements UserControllerImpl{
 	public boolean deleteProfile() {
 		return false;
 	}
+
 	
 }

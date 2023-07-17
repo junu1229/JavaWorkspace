@@ -2,8 +2,13 @@ package com.coupang.model;
 
 
 public class User {
-	
 	private String userId;
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	private String userPW;
 	private String userName;
 	private int userPhone;
@@ -18,22 +23,15 @@ public class User {
 	 * 주소
 	 * 
 	 */
-	public User() {
-		// TODO Auto-generated constructor stub
-	}
-	public User(String userId, String userPW, String userName, int userPhone, int userCash, String userAdress) {
-		this.userId = userId;
+	
+	public User(String userPW, String userName, int userPhone, int userCash, String userAdress) {
 		this.userPW = userPW;
 		this.userName = userName;
 		this.userPhone = userPhone;
 		this.userCash = userCash;
 		this.userAdress = userAdress;
 	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public User() {
 	}
 	public String getUserPW() {
 		return userPW;
@@ -67,8 +65,8 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userPW=" + userPW + ", userName=" + userName + ", userPhone=" + userPhone
-				+ ", userCash=" + userCash + ", userAdress=" + userAdress + "]";
+		return "User [userPW=" + userPW + ", userName=" + userName + ", userPhone=" + userPhone + ", userCash="
+				+ userCash + ", userAdress=" + userAdress + "]";
 	}
 	
 
